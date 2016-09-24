@@ -14,6 +14,7 @@ from_email = data["sendemail"]["from"]
 to_email = data["sendemail"]["to"]
 user = data["sendemail"]["user"]
 password = data["sendemail"]["pass"]
+config_spreadsheet = data["google_api"]["spreadsheetId"]
 
 cmd = ('sendemail -f "%s" -t "%s" -u "Inventory Alert" -m "Ink low!" -s smtp.gmail.com:587 -o tls=yes -xu "%s" -xp "%s"' % (from_email, to_email, user, password))
 
@@ -86,7 +87,8 @@ def main():
     service = discovery.build('sheets', 'v4', http=http,
                               discoveryServiceUrl=discoveryUrl)
 
-    spreadsheetId = '1n1KJlk-hlK3k-hI8DKg790wVK66pXNkbEfTExZxpAsg'
+    spreadsheetId = '%s' % config_spreadsheet
+
     rangeName = 'A2:D'
     result = service.spreadsheets().values().get(
         spreadsheetId=spreadsheetId, range=rangeName).execute()
