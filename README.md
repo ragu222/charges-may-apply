@@ -49,12 +49,22 @@ Next you have to create a Service Account in the Google Developer Console. This 
 
 ###Python script
 
-Next, install `pip`. If you're not familiar with Python, `pip` is Python's package installer. You'll need a couple of non-default python packages to work with the Google Sheets API.
+Next, install `pip`. If you're not familiar with Python, `pip` is Python's package installer. You'll need a couple of non-default python packages to work with the Google Sheets API:
 
-`sudo apt-get install httplib2 google-api-python-client`
-
-Finally, clone
 
 `sudo apt-get install pip`
 
-`sudo apt-get install lib`
+Then use pip to install those packages:
+
+`sudo pip install httplib2 google-api-python-client`
+
+Also install `git` because you're going to need it for the next step:
+
+`sudo apt-get install git`
+
+Finally, clone this repo:
+
+`sudo git clone https://github.com/ragu222/charges-may-apply`
+
+If you're not familiar with `git` don't sweat it. The details are really not important for this demo. We're basically copying this directory(containing this Readme.md file and the charges-may-apply.py python script) onto your local machine. That's it.
+
