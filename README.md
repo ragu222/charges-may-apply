@@ -9,49 +9,36 @@ The basic flow goes like this: Python script pulls a value from a Sheet using th
 
 There are a lot of steps so I'm going to break this section down into sub-sections corresponding to those steps I just outlined above
 
-###sendemail
+###Set up the server
 Spin up a linux server. This example uses Ubuntu 14.04, so if you're using something else you're obviously going to have to replace 'apt' with 'yum', etc. (Just use Ubuntu)
 
 First install the **sendemail** app and it's dependencies:
 
-`sudo apt-get install libio-socket-ssl-perl libssl-dev sendemail`
+`ragu222@ubuntu-14.04:~$ sudo apt-get install libio-socket-ssl-perl libssl-dev sendemail`
 
 My carrier is AT&T so I can only vouch for them. [Here](https://goo.gl/fMHAfa) are the other carriers' email-to-sms domains. Good luck. https://goo.gl/fMHAfa
 
 FYI I created a dummy email (emailbot@wrightesd.org) so that I didn't have a real user's password sitting around in plain text. And if you do this remember to log into the dummy account at least once to make sure you can actually send emails from it.
 
-###Google Sheets API
+Nex install `git`:
 
-Next you have to create a Service Account in the Google Developer Console. This creates an email address (this is important because you'll need to share your Sheet with this Service Account email address later) and generates a key pair that you'll download as a json file into your working directory.
+`ragu222@ubuntu-14.04:~$ sudo apt-get install git`
 
-[Here](https://developers.google.com/sheets/quickstart/python) and [here](https://developers.google.com/identity/protocols/OAuth2ServiceAccount) are the official Google references. They're fairly complete, but I'm going to walk through it here again with pictures because it took me a few tries to get it right.
+and clone this repo:
 
-###Python script
-
-Next, install `pip`. If you're not familiar with Python, `pip` is Python's package installer. You'll need a couple of non-default python packages to work with the Google Sheets API:
-
-
-`sudo apt-get install pip`
-
-Then use pip to install those packages:
-
-`sudo pip install httplib2 google-api-python-client`
-
-Also install `git` because you're going to need it for the next step:
-
-`sudo apt-get install git`
-
-Clone this repo:
-
-`sudo git clone https://github.com/ragu222/charges-may-apply`
+`ragu222@ubuntu-14.04:~$ sudo git clone https://github.com/ragu222/charges-may-apply`
 
 If you're not familiar with `git` don't sweat it. The details are really not important for this demo. We're basically copying this directory(containing this Readme.md file and the charges-may-apply.py python script, and the config.json) onto your local machine. That's it.
 
-Make sure to replace the default values with your real values. And DON'T TOUCH the *sent_flag* or *flag* values! You've been warned.
+Note that when you clone the repository it creates a new directory with the same name. You want to use that as your working directory for the rest of the demo:
+
+`cd ./charges-may-apply`
+
+Next you want to edit the config file to replace the default values with your real values. And DON'T TOUCH the *sent_flag* or *flag* values! You've been warned.
 
 `vi config.json`
 
-You don't have to use vi, you can use whatever editor you want (you should be using vi).
+You don't have to use vi. You can use whatever editor you want (you really should use vi, though).
 
 ```json
 {
@@ -66,3 +53,37 @@ You don't have to use vi, you can use whatever editor you want (you should be us
   }
 }
 ```
+
+###Python script
+
+Next, install `pip`. If you're not familiar with Python, `pip` is Python's package installer. You'll need a couple of non-default python packages to work with the Google Sheets API:
+
+
+`ragu222@ubuntu-14.04:~$ sudo apt-get install pip`
+
+Then use pip to install those packages:
+
+`ragu222@ubuntu-14.04:~$ sudo pip install httplib2 google-api-python-client`
+
+
+###Google Sheets
+
+####API
+
+Next you have to create a Service Account in the Google Developer Console. This creates an email address (this is important because you'll need to share your Sheet with this Service Account email address later) and generates a key pair that you'll download as a json file into your working directory.
+
+[Here](https://developers.google.com/sheets/quickstart/python) and [here](https://developers.google.com/identity/protocols/OAuth2ServiceAccount) are the official Google references. They're fairly complete, but I'm going to walk through it here again with pictures because it took me a few tries to get it right.
+
+####Create the Sheet
+
+I'm going to go ahead and assume you know how to create a Google Sheet so this section's pretty sparse.
+
+You can make the Sheet look however you want, but remember that this demo is looking at cell D2. So if you want to change the target cell in your Sheet make sure to reflect that change in the python script.
+
+The most important part of this step is to share the Sheet with your Service Account email address. That address is found [here.](https://console.cloud.google.com/iam-admin/serviceaccounts/)
+
+##Conclusion
+
+That's it! Have fun.
+
+
