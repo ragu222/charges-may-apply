@@ -82,8 +82,23 @@ You can make the Sheet look however you want, but remember that this demo is loo
 
 The most important part of this step is to share the Sheet with your Service Account email address. That address is found [here.](https://console.cloud.google.com/iam-admin/serviceaccounts/)
 
+###Cron
+
+`ragu222@ubuntu-14.04:~/charges-may-apply$ crontab -e`
+
+If this is your first crontab it's going ask you which editor you want to use (vi).
+
+Add this entry to the bottom of the file and save it:
+
+`*/5 * * * /usr/bin/python /home/yourusernamehere/charges-may-apply.py`
+
+This crontab entry checks the Sheet every 5 minutes. If you want to change that interval this is where to do it.
+
 ##Conclusion
 
 That's it! Have fun.
+
+##PS
+It's late. I'll clean up the code later.
 
 
