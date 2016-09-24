@@ -27,11 +27,15 @@ Make sure to replace the default values with your real values. And DON'T TOUCH t
       "user":"your_email@your_domain.org",
       "pass":"password"
   }
-  "sent_flag":{
+  "sent_flag": {
       "flag":0
   }
 }
 ```
+My carrier is AT&T so I can only vouch for them. [Here](https://goo.gl/fMHAfa) are the other carriers' email-to-sms domains. Good luck. https://goo.gl/fMHAfa
+
+FYI I created a dummy email (emailbot@wrightesd.org) so that I didn't have a real user's password sitting around in plain text. And if you do this remember to log into the dummy account at least once to make sure you can actually send emails from it.
 
 `sudo apt-get install pip`
+
 `sudo apt-get install lib`
