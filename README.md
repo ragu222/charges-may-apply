@@ -26,7 +26,7 @@ Next install `git`:
 
 and clone this repo:
 
-`ragu222@ubuntu-14.04:~$ sudo git clone https://github.com/ragu222/charges-may-apply`
+`ragu222@ubuntu-14.04:~$ git clone https://github.com/ragu222/charges-may-apply`
 
 If you're not familiar with `git` don't sweat it. The details are really not important for this demo. We're basically copying this directory(containing this Readme.md file and the charges-may-apply.py python script, and the config.json) onto your local machine. That's it.
 
@@ -79,6 +79,9 @@ Then use pip to install those packages:
 Next you have to create a Service Account in the Google Developer Console. This creates an email address (this is important because you'll need to share your Sheet with this Service Account email address later) and generates a key pair that you'll download as a json file into your working directory.
 
 [Here](https://developers.google.com/sheets/quickstart/python) are the official instructions and [this](https://developers.google.com/identity/protocols/OAuth2ServiceAccount) is a good reference. They're fairly complete, but I think in the near future I'm going to add some details and pictures here because it was a little tricky getting this part right.
+
+After you download the key from Google, copy it into your working directory and rename it project_key.json
+
 
 ####Create the Sheet
 
