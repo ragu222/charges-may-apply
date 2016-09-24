@@ -16,11 +16,11 @@ First install the **sendemail** app and it's dependencies:
 
 `ragu222@ubuntu-14.04:~$ sudo apt-get install libio-socket-ssl-perl libssl-dev sendemail`
 
-My carrier is AT&T so I can only vouch for them. [Here](https://goo.gl/fMHAfa) are the other carriers' email-to-sms domains. Good luck. https://goo.gl/fMHAfa
+My carrier is AT&T so I can only vouch for them. [This](https://goo.gl/fMHAfa) is a list of other carriers' email-to-sms domains. Good luck.
 
 FYI I created a dummy email (emailbot@wrightesd.org) so that I didn't have a real user's password sitting around in plain text. And if you do this remember to log into the dummy account at least once to make sure you can actually send emails from it.
 
-Nex install `git`:
+Next install `git`:
 
 `ragu222@ubuntu-14.04:~$ sudo apt-get install git`
 
