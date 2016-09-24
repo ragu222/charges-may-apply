@@ -1,0 +1,11 @@
+{
+  "sendemail": {
+      "from":"your_email@your_domain.org",
+      "to"  :"7075551234@txt.att.net",
+      "user":"your_email@your_domain.org",
+      "pass":"password"
+  }
+  "sent_flag": {
+      "flag":0
+  }
+}
