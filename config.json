@@ -4,7 +4,10 @@
       "to"  :"7075551234@txt.att.net",
       "user":"your_email@your_domain.org",
       "pass":"password"
-  }
+  },
+  "google_api": {
+       "spreadsheetId":"aasdf1234jk6789"
+  },
   "sent_flag": {
       "flag":0
   }
