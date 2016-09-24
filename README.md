@@ -48,6 +48,9 @@ You don't have to use vi. You can use whatever editor you want (you really shoul
       "user":"your_email@your_domain.org",
       "pass":"password"
   },
+  "google_api": {
+      "spreadsheetId":"1234abcde729jf72"
+  },
   "sent_flag": {
       "flag":0
   }
