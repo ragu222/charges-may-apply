@@ -57,6 +57,9 @@ You don't have to use vi. You can use whatever editor you want (you really shoul
 }
 ```
 
+Your google sheet ID you won't know until you create you Sheet. Once you've created it come back and fill this part in. The googlesheetId is the part of the Sheets link that is a long string of letters and numbers.
+
+
 ###Python script
 
 Next, install `pip`. If you're not familiar with Python, `pip` is Python's package installer. You'll need a couple of non-default python packages to work with the Google Sheets API:
