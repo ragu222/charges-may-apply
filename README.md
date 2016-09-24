@@ -1,13 +1,13 @@
 # charges-may-apply
 --
 ##Description
-The goal of this project is to text an alert to a mobile number when a cell in a Google Sheet falls below a certain value
+The goal of this project is to send an alert via text message to a mobile number when the value in a specific Google Sheet cell falls below a certain threshold.
 
 
 ##Instructions
-The basic flow goes like this: Python script pulls a value from a Sheet using the Sheets API->Python compares that value to a threshold number that you define->If the value is lower than the threshold number the script uses an app called 'sendemail' to send an email to your carrier's email-to-txt service which, in turn, texts you with a message of your choice.
+The basic flow goes like this: Python script pulls a value from a Sheet using the Sheets API --> Python compares that value to a threshold number that you define --> If the value is lower than the threshold number the script uses an app called 'sendemail' to send an email to your carrier's email-to-txt service which, in turn, texts you with a message of your choice.
 
-There are a lot of steps so I'm going to break this section down into sub-sections corresponding to those steps I just outlined above
+There are a lot of steps so I'm going to break this section down into sub-sections corresponding to those steps I just outlined above.
 
 ###Set up the server
 Spin up a linux server. This example uses Ubuntu 14.04, so if you're using something else you're obviously going to have to replace 'apt' with 'yum', etc. (Just use Ubuntu)
