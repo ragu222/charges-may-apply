@@ -22,9 +22,9 @@ Make sure to replace the default values with your real values. And DON'T TOUCH t
 ```json
 {
   "sendemail": {
-      "from":"your_email@your_domain.org"
-      "to"  :"7075551234@txt.att.net"
-      "user":"your_email@your_domain.org"
+      "from":"your_email@your_domain.org",
+      "to"  :"7075551234@txt.att.net",
+      "user":"your_email@your_domain.org",
       "pass":"password"
   }
   "sent_flag":{
