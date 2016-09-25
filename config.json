@@ -7,6 +7,12 @@
   },
   "google_api": {
        "spreadsheetId":"aasdf1234jk6789"
+       "inventories": {
+           "title":"Elephants"
+           "descr":"How many elephants are left?"
+           "taret_cell":"D2"
+           "threshold":"50"
+	} 
   },
   "sent_flag": {
       "flag":0
