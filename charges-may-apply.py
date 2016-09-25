@@ -42,8 +42,6 @@ def get_credentials():
     credential_path = os.path.join(credential_dir,
                                    'sheets.googleapis.com-python-quickstart.json')
 
-    #store = oauth2client.file.Storage(credential_path)
-    #credentials = store.get()
     credentials = ServiceAccountCredentials.from_json_keyfile_name('project_key.json', scopes)
     return credentials
 
