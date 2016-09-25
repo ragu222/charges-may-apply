@@ -14,7 +14,9 @@ Spin up a linux server. This example uses Ubuntu 14.04, so if you're using somet
 
 First install the **sendemail** app and it's dependencies:
 
-`ragu222@ubuntu-14.04:~$ sudo apt-get install libio-socket-ssl-perl libssl-dev sendemail`
+```bash
+ragu222@ubuntu-14.04:~$ sudo apt-get install libio-socket-ssl-perl libssl-dev sendemail
+```
 
 My carrier is AT&T so I can only vouch for them. [This](https://goo.gl/fMHAfa) is a list of other carriers' email-to-sms domains. Good luck.
 
@@ -22,7 +24,9 @@ FYI I created a dummy email (emailbot@wrightesd.org) so that I didn't have a rea
 
 Next install `git`:
 
-`ragu222@ubuntu-14.04:~$ sudo apt-get install git`
+```shell
+ragu222@ubuntu-14.04:~$ sudo apt-get install git
+```
 
 and clone this repo:
 
