@@ -24,23 +24,29 @@ FYI I created a dummy email (emailbot@wrightesd.org) so that I didn't have a rea
 
 Next install `git`:
 
-```shell
+```bash
 ragu222@ubuntu-14.04:~$ sudo apt-get install git
 ```
 
 and clone this repo:
 
-`ragu222@ubuntu-14.04:~$ git clone https://github.com/ragu222/charges-may-apply`
+```bash
+ragu222@ubuntu-14.04:~$ git clone https://github.com/ragu222/charges-may-apply
+```
 
 If you're not familiar with `git` don't sweat it. The details are really not important for this demo. We're basically copying this directory(containing this Readme.md file and the charges-may-apply.py python script, and the config.json) onto your local machine. That's it.
 
 Note that when you clone the repository it creates a new directory with the same name. You want to use that as your working directory for the rest of the demo:
 
-`ragu222@ubuntu-14.04:~$ cd ./charges-may-apply`
+```bash
+ragu222@ubuntu-14.04:~$ cd ./charges-may-apply
+```
 
 Next you want to edit the config file to replace the default values with your real values. And DON'T TOUCH the *sent_flag* or *flag* values! You've been warned.
 
-`ragu222@ubuntu-14.04:~/charges-may-apply$ vi config.json`
+```bash
+ragu222@ubuntu-14.04:~/charges-may-apply$ vi config.json
+```
 
 You don't have to use vi. You can use whatever editor you want (you really should use vi, though).
 
@@ -69,11 +75,15 @@ Your google sheet ID you won't know until you create you Sheet. Once you've crea
 Next, install `pip`. If you're not familiar with Python, `pip` is Python's package installer. You'll need a couple of non-default python packages to work with the Google Sheets API:
 
 
-`ragu222@ubuntu-14.04:~/charges-may-apply$ sudo apt-get install pip`
+```bash
+ragu222@ubuntu-14.04:~/charges-may-apply$ sudo apt-get install pip
+```
 
 Then use pip to install those packages:
 
-`ragu222@ubuntu-14.04:~/charges-may-apply$ sudo pip install httplib2 google-api-python-client`
+```bash
+ragu222@ubuntu-14.04:~/charges-may-apply$ sudo pip install httplib2 google-api-python-client
+```
 
 
 ###Google Sheets
@@ -97,7 +107,9 @@ The most important part of this step is to share the Sheet with your Service Acc
 
 ###Cron
 
-`ragu222@ubuntu-14.04:~/charges-may-apply$ crontab -e`
+```bash
+ragu222@ubuntu-14.04:~/charges-may-apply$ crontab -e
+```
 
 If this is your first crontab it's going ask you which editor you want to use (vi).
 
