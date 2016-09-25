@@ -25,7 +25,6 @@ from oauth2client import client
 from oauth2client import tools
 from oauth2client.service_account import ServiceAccountCredentials
 
-#scopes = ['https://www.googleapis.com/auth/sqlservice.admin','https://www.googleapis.com/auth/spreadhseets']
 scopes = ['https://www.googleapis.com/auth/spreadsheets']
 
 
@@ -35,22 +34,7 @@ try:
 except ImportError:
     flags = None
 
-# If modifying these scopes, delete your previously saved credentials
-# at ~/.credentials/sheets.googleapis.com-python-quickstart.json
-SCOPES = 'https://www.googleapis.com/auth/spreadsheets'
-CLIENT_SECRET_FILE = 'client_secret.json'
-APPLICATION_NAME = 'Google Sheets API Python Quickstart'
-
-
 def get_credentials():
-    """Gets valid user credentials from storage.
-
-    If nothing has been stored, or if the stored credentials are invalid,
-    the OAuth2 flow is completed to obtain the new credentials.
-
-    Returns:
-        Credentials, the obtained credential.
-    """
     home_dir = os.path.expanduser('~')
     credential_dir = os.path.join(home_dir, '.credentials')
     if not os.path.exists(credential_dir):
@@ -61,25 +45,9 @@ def get_credentials():
     #store = oauth2client.file.Storage(credential_path)
     #credentials = store.get()
     credentials = ServiceAccountCredentials.from_json_keyfile_name('project_key.json', scopes)
-    """
-    if not credentials or credentials.invalid:
-        flow = client.flow_from_clientsecrets(CLIENT_SECRET_FILE, SCOPES)
-        flow.user_agent = APPLICATION_NAME
-        if flags:
-            credentials = tools.run_flow(flow, store, flags)
-        else: # Needed only for compatibility with Python 2.6
-            credentials = tools.run(flow, store)
-        print('Storing credentials to ' + credential_path)
-    """
     return credentials
 
 def main():
-    """Shows basic usage of the Sheets API.
-
-    Creates a Sheets API service object and prints the names and majors of
-    students in a sample spreadsheet:
-    https://docs.google.com/spreadsheets/d/E2upms/edit
-    """
     credentials = get_credentials()
     http = credentials.authorize(httplib2.Http())
     discoveryUrl = ('https://sheets.googleapis.com/$discovery/rest?'
@@ -88,43 +56,42 @@ def main():
                               discoveryServiceUrl=discoveryUrl)
 
     spreadsheetId = '%s' % config_spreadsheet
-
+    
+    #This line defines the range
     rangeName = 'A2:D'
+    #These two lines put the values from the spreadsheet into a dictionary of tuples called 'values'
     result = service.spreadsheets().values().get(
         spreadsheetId=spreadsheetId, range=rangeName).execute()
     values = result.get('values', [])
-    
+
+    #This line looks assigns a cell value to a variable to a variable called 'ink_level'
+    #Both the variable name and the cell are arbitrary. They're chosen randomly for this example
     ink_level = int(values[0][3])
+   
+    #The next line is a debug line. I used it to make sure that the variable holds the value I think it should
     #print ('%s' % ink_level)
     #print bool_flag
+
+    #This next block of code checks to see if the cell value is below the threshold
+    #The 'print' line is debug
+    #The 'os.system(cmd) is executing the sendemail binary
+    #Lastly it checks to see if the txt has been sent already. If it has then it won't keep sending the alert every 5 minutes
+    #or however long the cron job is set to check
 
     if (ink_level < 58 and bool_flag==0):
 	print ('Ink is low!')
         os.system(cmd)
-	#d = {"sent_flag":{"flag":1}}
 	with open('config.json', 'r') as f:
 	    d = json.load(f)
 	    d["sent_flag"]["flag"] = 1
 	with open('config.json', 'w') as f:
 	    json.dump(d,f)
     elif (ink_level > 57 and bool_flag==1):
-	#d = {"sent_flag":{"flag":0}}
 	with open('config.json', 'r') as f:
 	    d = json.load(f)
 	    d["sent_flag"]["flag"] = 0 
 	with open('config.json', 'w') as f:
 	    json.dump(d,f)
         
-    
-    """
-    if not values:
-        print('No data found.')
-    else:
-        print('Name, Major:')
-        for row in values:
-            # Print columns A and E, which correspond to indices 0 and 4.
-            print('%s, %s' % (row[0], row[3]))
-    """
-
 if __name__ == '__main__':
     main()
