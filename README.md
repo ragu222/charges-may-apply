@@ -65,6 +65,8 @@ You don't have to use vi. You can use whatever editor you want (you really shoul
            "descr":"How many elephants are left?",
            "taret_cell":"D2",
            "threshold":"50"
+	   "subj":"This is the subject"
+	   "mesg":"This is the message"
 	} 
   },
   "sent_flag": {
@@ -72,9 +74,9 @@ You don't have to use vi. You can use whatever editor you want (you really shoul
   }
 }
 ```
-
 Your google sheet ID you won't know until you create you Sheet. Once you've created it come back and fill this part in. The googlesheetId is the part of the Sheets link that is a long string of letters and numbers.
 
+Also note the section titled "inventories."  That is where you want the scrip to look for a value and also what you want that threshold value to be. We're looking for elephants here in our example, but you could look for anything.
 
 ###Python script
 
