@@ -62,12 +62,12 @@ You don't have to use vi. You can use whatever editor you want (you really shoul
        "spreadsheetId":"aasdf1234jk6789",
        "inventories": {
 		"inventory_1": {
-           	    "title":"Elephants",
-                    "descr":"How many elephants are left?",
-           	    "taret_cell":"D2",
-           	    "threshold":"50",
-	   	    "subj":"This is the subject",
-	   	    "mesg":"This is the message"
+			"title":"Elephants",
+			"descr":"How many elephants are left?",
+			"taret_cell":"D2",
+			"threshold":"50",
+			"subj":"This is the subject",
+			"mesg":"This is the message"
 		 }
 	} 
   },
