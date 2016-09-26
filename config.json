@@ -1,20 +1,24 @@
 {
-  "sendemail": {
-      "from":"your_email@your_domain.org",
-      "to"  :"7075551234@txt.att.net",
-      "user":"your_email@your_domain.org",
-      "pass":"password"
-  },
-  "google_api": {
-       "spreadsheetId":"aasdf1234jk6789",
-       "inventories": {
-           "title":"Elephants",
-           "descr":"How many elephants are left?",
-           "taret_cell":"D2",
-           "threshold":"50"
-	} 
-  },
-  "sent_flag": {
-      "flag":0
-  }
+	"sendemail": {
+		"from":"your_email@your_domain.org",
+		"to"  :"7075551234@txt.att.net",
+		"user":"your_email@your_domain.org",
+		"pass":"password"
+	},
+	"google_api": {
+		"spreadsheetId":"aasdf1234jk6789",
+		"inventories": {
+			"inventory_1": {
+				"title":"Elephants",
+				"descr":"How many elephants are left?",
+				"taret_cell":"D2",
+				"threshold":"50",
+				"subj":"This is the subject",
+				"mesg":"This is the message"
+			}
+		} 
+  	},
+	"sent_flag": {
+		"flag":0
+	}
 }
