@@ -68,8 +68,8 @@ You don't have to use vi. You can use whatever editor you want (you really shoul
 				"threshold":"50",
 				"subj":"This is the subject",
 				"mesg":"This is the message"
-		}
-			} 
+			}
+		} 
   	},
 	"sent_flag": {
 		"flag":0
