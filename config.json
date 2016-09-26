@@ -6,7 +6,7 @@
       "pass":"password"
   },
   "google_api": {
-       "spreadsheetId":"aasdf1234jk6789"
+       "spreadsheetId":"aasdf1234jk6789",
        "inventories": {
            "title":"Elephants"
            "descr":"How many elephants are left?"
