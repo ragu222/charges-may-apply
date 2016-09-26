@@ -110,8 +110,12 @@ The most important part of this step is to share the Sheet with your Service Acc
 You should probably run the python script once to make sure it's actually pulling data and that it's texting your phone.
 
 ```bash
-ragu222@ubuntu-14.04:~/charges-may-apply$ *python charges-may-apply.py*
+ragu222@ubuntu-14.04:~/charges-may-apply$ python charges-may-apply.py
 ```
+Once you know that runs without error you want to run that every 5 minutes (or however often you want to check the Sheet cell). You do this by creating a cron job.
+
+**Note** 
+I also set a flag in the config.json file that says, "I sent a text message, stop sending text messages." Otherwise the script will keep sending you a text message every 5 minutes as long as the inventory is low.
 
 If this is your first crontab it's going ask you which editor you want to use (vi).
 
