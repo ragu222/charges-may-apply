@@ -109,9 +109,8 @@ The most important part of this step is to share the Sheet with your Service Acc
 
 You should probably run the python script once to make sure it's actually pulling data and that it's texting your phone.
 
-
 ```bash
-ragu222@ubuntu-14.04:~/charges-may-apply$ crontab -e
+ragu222@ubuntu-14.04:~/charges-may-apply$ *python charges-may-apply.py*
 ```
 
 If this is your first crontab it's going ask you which editor you want to use (vi).
