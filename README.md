@@ -1,6 +1,6 @@
 # charges-may-apply
 --
-###UPDATE
+\*###UPDATE\*
 I updated the the code so that it's much cleaner. It looks a little more polished instead of a proof of concept, but the it's basically doing the same thing as before.
 
 ##Description
