@@ -1,9 +1,9 @@
 {
 	"sendemail": {
-		"from":"emailbot@wrightesd.org",
-		"to"  :"7072938790@txt.att.net",
-		"user":"emailbot@wrightesd.org",
-		"pass":"welcome1"
+		"from":"your_email@your_domain.org",
+		"to"  :"7075551234@txt.att.net",
+		"user":"your_email@your_domain.org",
+		"pass":"your_password_here"
 	},
 	"google_api": {
 		"spreadsheetId":"18Rtd53P1SXAuhD3XNnQozALflWJxMitJQnSCtyxXP5o"
