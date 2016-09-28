@@ -64,7 +64,6 @@ def check_for_flags_file():
 def check_if_sent(this_id):
 	s = shelve.open('.flags')
 	s_string = s['%s' % this_id]
-	print ('%i' % s_string)
 	return s_string
 	s.close()
 
@@ -80,7 +79,8 @@ def set_flag_to_0(this_id):
 
 def check_cell(cell_to_check, threshold, this_inv_id, command):
 	if (cell_to_check < threshold and check_if_sent(this_inv_id) == 0):
-		print ("Low on inventory")
+		#Debug statement
+		#print ("Low on inventory")
 		os.system(command)
 		set_flag_to_1(this_inv_id)
 	elif (cell_to_check > threshold and check_if_sent(this_inv_id) ==1):
@@ -92,7 +92,6 @@ def main():
 	discoveryUrl = ('https://sheets.googleapis.com/$discovery/rest?''version=v4')
 	service = discovery.build('sheets', 'v4', http=http, discoveryServiceUrl=discoveryUrl)
 	data = load_config()
-	print (data)
 	check_for_flags_file()
 
 	#Create a dictionary from the config.json
@@ -114,10 +113,8 @@ def main():
 	for i in inventories_dict:
 		#Define the variable that are unique to each inventory
 		inventory_id = i["inventory_id"]
-		print (inventory_id)
 		target_cell = i["target_cell"]
 		threshold_value = i["threshold"]
-		print (threshold_value)
 		subject = i["subject"]
 		message = i["message"]
 		#Define Sheets variables
@@ -126,7 +123,6 @@ def main():
 		results = service.spreadsheets().values().get(
 			spreadsheetId=spreadsheetId, range=rangeName).execute()
 		values = results.get('values', [])
-		print (values[0][0])
 		#Define the sendemail command
 		cmd = ('sendemail -f "%s" -t "%s" -u "%s" -m "%s" -s smtp.gmail.com:587 -xu "%s" -xp "%s"' % (from_email, to_email, subject, message, username, password))
 	
