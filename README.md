@@ -16,7 +16,7 @@ Spin up a linux server. This example uses Ubuntu 14.04, so if you're using somet
 First install the **sendemail** app and it's dependencies:
 
 ```bash
-ragu222@ubuntu-14.04:~$ sudo apt-get install libio-socket-ssl-perl libssl-dev sendemail
+sudo apt-get install libio-socket-ssl-perl libssl-dev sendemail
 ```
 
 My carrier is AT&T so I can only vouch for them. [This](https://goo.gl/fMHAfa) is a list of other carriers' email-to-sms domains. Good luck.
@@ -26,13 +26,13 @@ FYI I created a dummy email (emailbot@wrightesd.org) so that I didn't have a rea
 Next install `git`:
 
 ```bash
-ragu222@ubuntu-14.04:~$ sudo apt-get install git
+sudo apt-get install git
 ```
 
 and clone this repo:
 
 ```bash
-ragu222@ubuntu-14.04:~$ git clone https://github.com/ragu222/charges-may-apply
+git clone https://github.com/ragu222/charges-may-apply
 ```
 
 If you're not familiar with `git` don't sweat it. The details are really not important for this demo. We're basically copying this directory(containing this Readme.md file and the charges-may-apply.py python script, and the config.json) onto your local machine. That's it.
@@ -40,13 +40,13 @@ If you're not familiar with `git` don't sweat it. The details are really not imp
 Note that when you clone the repository it creates a new directory with the same name. You want to use that as your working directory for the rest of the demo:
 
 ```bash
-ragu222@ubuntu-14.04:~$ cd ./charges-may-apply
+cd ./charges-may-apply
 ```
 
 Next you want to edit the config file to replace the default values with your real values.
 
 ```bash
-ragu222@ubuntu-14.04:~/charges-may-apply$ vi config.json
+vi config.json
 ```
 ```json
 {
@@ -97,13 +97,13 @@ Next, install `pip`. If you're not familiar with Python, `pip` is Python's packa
 
 
 ```bash
-ragu222@ubuntu-14.04:~/charges-may-apply$ sudo apt-get install pip
+sudo apt-get install pip
 ```
 
 Then use pip to install those packages:
 
 ```bash
-ragu222@ubuntu-14.04:~/charges-may-apply$ sudo pip install httplib2 google-api-python-client
+sudo pip install httplib2 google-api-python-client
 ```
 
 
@@ -134,7 +134,7 @@ The most important part of this step is to share the Sheet with your Service Acc
 You should probably run the python script once to make sure it's actually pulling data and that it's texting your phone.
 
 ```bash
-ragu222@ubuntu-14.04:~/charges-may-apply$ python charges-may-apply.py
+python charges-may-apply.py
 ```
 Once you know that runs without error you want to run that every 5 minutes (or however often you want to check the Sheet cell). You do this by creating a cron job.
 
