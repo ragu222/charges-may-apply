@@ -88,6 +88,10 @@ You don't have to use vi. You can use whatever editor you want (you really shoul
 	 ]
 }
 ```
+A few things about the config.json file:
+
+	* The inventory_id must be unique and an integer. I chose those 2 random numbers to help me debug.
+	* 
 Your google sheet ID you won't know until you create you Sheet. Once you've created it come back and fill this part in. The googlesheetId is the part of the Sheets link that is a long string of letters and numbers.
 
 Also note the section titled "inventories."  That is where you want the scrip to look for a value and also what you want that threshold value to be. We're looking for elephants here in our example, but you could look for anything.
