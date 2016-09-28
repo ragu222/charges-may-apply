@@ -22,7 +22,7 @@
 		{
 			"inventory_id":555,
 			"title":"Tigers",
-			"descr":"How many elephants are left?",
+			"descr":"How many bears are left?",
 			"target_cell":"D2",
 			"threshold":"50",
 			"subject":"This is the subject ",
