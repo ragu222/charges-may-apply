@@ -89,9 +89,8 @@ A few things about the config.json file:
 	
 Your google sheet ID you won't know until you create you Sheet. Once you've created it come back and fill this part in. The googlesheetId is the part of the Sheets link that is a long string of letters and numbers.
 
-```
-https://docs.google.com/spreadsheets/d/**18Rtd53P1SXAuhD3XNnQozALflWJxMitJQnSCtyxXP5o**/edit#gid=0
-```
+
+Example: https://docs.google.com/spreadsheets/d/**18Rtd53P1SXAuhD3XNnQozALflWJxMitJQnSCtyxXP5o**/edit#gid=0
 
 The sheetId in this example config is a Sheet that I own. If you want to use it to try out this code just let me know and I'll share the service account email and the key with you.
 
