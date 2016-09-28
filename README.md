@@ -87,10 +87,7 @@ A few things about the config.json file:
 	+ You can make the target cell whatever you want.
 	+ If you want to check more than two inventories just copy and paste a block (including the curly brackets), and change the inventory_id.
 	
-Your google sheet ID you won't know until you create you Sheet. Once you've created it come back and fill this part in. The googlesheetId is the part of the Sheets link that is a long string of letters and numbers.
-
-
-Example: https://docs.google.com/spreadsheets/d/**18Rtd53P1SXAuhD3XNnQozALflWJxMitJQnSCtyxXP5o**/edit#gid=0
+Once you've created your Sheet you'll come back here and fill in sheetID.
 
 The sheetId in this example config is a Sheet that I own. If you want to use it to try out this code just let me know and I'll share the service account email and the key with you.
 
@@ -125,7 +122,9 @@ After you download the key from Google, copy it into your working directory and 
 
 I'm going to go ahead and assume you know how to create a Google Sheet so this section's pretty sparse.
 
-You can make the Sheet look however you want, but remember that this demo is looking at cell D2. So if you want to change the target cell in your Sheet make sure to reflect that change in the python script.
+Thet sheetId is found in the address of the Google Sheet.
+
+Example: https://<span></span>docs.google.com/spreadsheets/d/**18Rtd53P1SXAuhD3XNnQozALflWJxMitJQnSCtyxXP5o**/edit#gid=0
 
 The most important part of this step is to share the Sheet with your Service Account email address. That address is found [here.](https://console.cloud.google.com/iam-admin/serviceaccounts/)
 
