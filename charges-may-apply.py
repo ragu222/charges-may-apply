@@ -3,21 +3,8 @@ import httplib2
 import os
 import sys
 import json
+import shelve
 from pprint import pprint
-
-with open('config.json') as data_file:
-    data = json.load(data_file)
-
-bool_flag = int(data["sent_flag"]["flag"])
-
-from_email = data["sendemail"]["from"]
-to_email = data["sendemail"]["to"]
-user = data["sendemail"]["user"]
-password = data["sendemail"]["pass"]
-config_spreadsheet = data["google_api"]["spreadsheetId"]
-
-cmd = ('sendemail -f "%s" -t "%s" -u "Inventory Alert" -m "Ink low!" -s smtp.gmail.com:587 -o tls=yes -xu "%s" -xp "%s"' % (from_email, to_email, user, password))
-
 
 from apiclient import discovery
 import oauth2client
@@ -27,14 +14,13 @@ from oauth2client.service_account import ServiceAccountCredentials
 
 scopes = ['https://www.googleapis.com/auth/spreadsheets']
 
-
 try:
     import argparse
     flags = argparse.ArgumentParser(parents=[tools.argparser]).parse_args()
 except ImportError:
     flags = None
 
-def get_credentials():
+def get_credentials():										
     home_dir = os.path.expanduser('~')
     credential_dir = os.path.join(home_dir, '.credentials')
     if not os.path.exists(credential_dir):
@@ -45,51 +31,106 @@ def get_credentials():
     credentials = ServiceAccountCredentials.from_json_keyfile_name('project_key.json', scopes)
     return credentials
 
+#Load the config.json and return a dictionary for the check_cell function to use
+"""
+def load_config():
+	with open('config.json') as data_file:
+		return json.load(data_file)
+"""
+def load_config():
+	with open('config.json') as data_file:
+		data = json.load(data_file)
+		#print (data)
+		#return data["inventories"]
+		return data
+
+#Function checks for flag file. If file is not present (first run), the function creates it.
+def check_for_flags_file():	
+    if os.path.isfile('.flags') == False:	
+        s = shelve.open('.flags', writeback=True)
+	with open('config.json') as f:
+		temp_dict = json.load(f) 
+		list_dict = temp_dict["inventories"]	
+        list_of_ids = []
+        for i in list_dict:
+                list_of_ids.append(i["inventory_id"])
+        number_of_inventories = len(list_of_ids)
+        zeroes = [0 for x in range(number_of_inventories)]
+        sent_flags = dict(zip(list_of_ids,zeroes))
+        s.close()
+    else:
+    	print ("File exists")
+
+def check_if_sent(this_id):
+	s = shelve.open('.flags')
+	s_string = s['%s' % this_id]
+	print ('%i' % s_string)
+	return s_string
+	s.close()
+
+def set_flag_to_1(this_id):
+	s = shelve.open('.flags', writeback=True)
+	s['%s' % this_id] = 1
+	s.close()
+
+def set_flag_to_0(this_id):
+	s = shelve.open('.flags', writeback=True)
+	s['%s' % this_id] = 0
+	s.close()
+
+def check_cell(cell_to_check, threshold, this_inv_id, command):
+	if (cell_to_check < threshold and check_if_sent(this_inv_id) == 0):
+		print ("Low on inventory")
+		os.system(command)
+		set_flag_to_1(this_inv_id)
+	elif (cell_to_check > threshold and check_if_sent(this_inv_id) ==1):
+		set_flag_to_0(this_inv_id)
+
 def main():
-    credentials = get_credentials()
-    http = credentials.authorize(httplib2.Http())
-    discoveryUrl = ('https://sheets.googleapis.com/$discovery/rest?'
-                    'version=v4')
-    service = discovery.build('sheets', 'v4', http=http,
-                              discoveryServiceUrl=discoveryUrl)
+	credentials = get_credentials()
+	http = credentials.authorize(httplib2.Http())
+	discoveryUrl = ('https://sheets.googleapis.com/$discovery/rest?''version=v4')
+	service = discovery.build('sheets', 'v4', http=http, discoveryServiceUrl=discoveryUrl)
+	data = load_config()
+	print (data)
+	check_for_flags_file()
 
-    spreadsheetId = '%s' % config_spreadsheet
-    
-    #This line defines the range
-    rangeName = 'A2:D'
-    #These two lines put the values from the spreadsheet into a dictionary of tuples called 'values'
-    result = service.spreadsheets().values().get(
-        spreadsheetId=spreadsheetId, range=rangeName).execute()
-    values = result.get('values', [])
+	#Create a dictionary from the config.json
+	inventories_dict_list = load_config()
+	#Check if the script has run once by looking for the .flags file
+	#check_for_flags_file(**inventories_dict)
+	#Define variables that don't change per inventory
+	from_email = data["sendemail"]["from"]
+	to_email = data["sendemail"]["to"]
+	username = data["sendemail"]["user"]
+	password = data["sendemail"]["pass"]
+	spreadsheetId = data["google_api"]["spreadsheetId"]
 
-    #This line looks assigns a cell value to a variable to a variable called 'ink_level'
-    #Both the variable name and the cell are arbitrary. They're chosen randomly for this example
-    ink_level = int(values[0][3])
-   
-    #The next line is a debug line. I used it to make sure that the variable holds the value I think it should
-    #print ('%s' % ink_level)
-    #print bool_flag
+	#Turn dict_list into dict
+	inventories_dict = inventories_dict_list["inventories"]
+	#Iterate over the dictionaries to get the variables for each inventory
+	#Perform the check and flag funcitons on each inventory
+	
+	for i in inventories_dict:
+		#Define the variable that are unique to each inventory
+		inventory_id = i["inventory_id"]
+		print (inventory_id)
+		target_cell = i["target_cell"]
+		threshold_value = i["threshold"]
+		print (threshold_value)
+		subject = i["subject"]
+		message = i["message"]
+		#Define Sheets variables
+		rangeName = '%s' % target_cell
+		#Get the value using the API
+		results = service.spreadsheets().values().get(
+			spreadsheetId=spreadsheetId, range=rangeName).execute()
+		values = results.get('values', [])
+		print (values[0][0])
+		#Define the sendemail command
+		cmd = ('sendemail -f "%s" -t "%s" -u "%s" -m "%s" -s smtp.gmail.com:587 -xu "%s" -xp "%s"' % (from_email, to_email, subject, message, username, password))
+	
+		check_cell(values, threshold_value, inventory_id, cmd)
 
-    #This next block of code checks to see if the cell value is below the threshold
-    #The 'print' line is debug
-    #The 'os.system(cmd) is executing the sendemail binary
-    #Lastly it checks to see if the txt has been sent already. If it has then it won't keep sending the alert every 5 minutes
-    #or however long the cron job is set to check
-
-    if (ink_level < 58 and bool_flag==0):
-	print ('Ink is low!')
-        os.system(cmd)
-	with open('config.json', 'r') as f:
-	    d = json.load(f)
-	    d["sent_flag"]["flag"] = 1
-	with open('config.json', 'w') as f:
-	    json.dump(d,f)
-    elif (ink_level > 57 and bool_flag==1):
-	with open('config.json', 'r') as f:
-	    d = json.load(f)
-	    d["sent_flag"]["flag"] = 0 
-	with open('config.json', 'w') as f:
-	    json.dump(d,f)
-        
 if __name__ == '__main__':
     main()

@@ -1,24 +1,33 @@
 {
 	"sendemail": {
-		"from":"your_email@your_domain.org",
-		"to"  :"7075551234@txt.att.net",
-		"user":"your_email@your_domain.org",
-		"pass":"password"
+		"from":"emailbot@wrightesd.org",
+		"to"  :"7072938790@txt.att.net",
+		"user":"emailbot@wrightesd.org",
+		"pass":"welcome1"
 	},
 	"google_api": {
-		"spreadsheetId":"aasdf1234jk6789",
-		"inventories": {
-			"inventory_1": {
-				"title":"Elephants",
-				"descr":"How many elephants are left?",
-				"taret_cell":"D2",
-				"threshold":"50",
-				"subj":"This is the subject ",
-				"mesg":"You're low on elephants!"
-			}
-		} 
-  	},
-	"sent_flag": {
-		"flag":0
-	}
+		"spreadsheetId":"18Rtd53P1SXAuhD3XNnQozALflWJxMitJQnSCtyxXP5o"
+	},
+	"inventories": [
+		{
+			"inventory_id":112,
+			"title":"Elephants",
+			"descr":"How many elephants are left?",
+			"target_cell":"D2",
+			"threshold":"50",
+			"subject":"This is the subject ",
+			"message":"You're low on elephants!",
+			"sent_flag": 0
+		},
+		{
+			"inventory_id":555,
+			"title":"Tigers",
+			"descr":"How many elephants are left?",
+			"target_cell":"D2",
+			"threshold":"50",
+			"subject":"This is the subject ",
+			"message":"You're low bears !",
+			"sent_flag": 0
+		}
+	 ]
 }
