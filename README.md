@@ -122,7 +122,7 @@ After you download the key from Google, copy it into your working directory and 
 
 I'm going to go ahead and assume you know how to create a Google Sheet so this section's pretty sparse.
 
-Thet sheetId is found in the address of the Google Sheet.
+Thet sheetId is the long string of letters and numbers in the address of the Google Sheet.
 
 Example: 
 https://docs\.google.com/spreadsheets/d/**18Rtd53P1SXAuhD3XNnQozALflWJxMitJQnSCtyxXP5o**/edit#gid=0
