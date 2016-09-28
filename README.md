@@ -59,24 +59,33 @@ You don't have to use vi. You can use whatever editor you want (you really shoul
 		"from":"your_email@your_domain.org",
 		"to"  :"7075551234@txt.att.net",
 		"user":"your_email@your_domain.org",
-		"pass":"password"
+		"pass":"your_password_here"
 	},
 	"google_api": {
-		"spreadsheetId":"aasdf1234jk6789",
-		"inventories": {
-			"inventory_1": {
-				"title":"Elephants",
-				"descr":"How many elephants are left?",
-				"taret_cell":"D2",
-				"threshold":"50",
-				"subj":"This is the subject",
-				"mesg":"This is the message"
-			}
-		} 
-  	},
-	"sent_flag": {
-		"flag":0
-	}
+		"spreadsheetId":"18Rtd53P1SXAuhD3XNnQozALflWJxMitJQnSCtyxXP5o"
+	},
+	"inventories": [
+		{
+			"inventory_id":112,
+			"title":"Elephants",
+			"descr":"How many elephants are left?",
+			"target_cell":"D2",
+			"threshold":"50",
+			"subject":"This is the subject ",
+			"message":"You're low on elephants!",
+			"sent_flag": 0
+		},
+		{
+			"inventory_id":555,
+			"title":"Tigers",
+			"descr":"How many elephants are left?",
+			"target_cell":"D2",
+			"threshold":"50",
+			"subject":"This is the subject ",
+			"message":"You're low bears !",
+			"sent_flag": 0
+		}
+	 ]
 }
 ```
 Your google sheet ID you won't know until you create you Sheet. Once you've created it come back and fill this part in. The googlesheetId is the part of the Sheets link that is a long string of letters and numbers.
