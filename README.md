@@ -10,8 +10,6 @@ The goal of this project is to send an alert via text message to a mobile number
 ##Instructions
 The basic flow goes like this: Python script pulls a value from a Sheet using the Sheets API --> Python compares that value to a threshold number that you define --> If the value is lower than the threshold number the script uses an app called 'sendemail' to send an email to your carrier's email-to-txt service which, in turn, texts you with a message of your choice.
 
-There are a lot of steps so I'm going to break this section down into sub-sections corresponding to those steps I just outlined above.
-
 ###Set up the server
 Spin up a linux server. This example uses Ubuntu 14.04, so if you're using something else you're obviously going to have to replace 'apt' with 'yum', etc. (Just use Ubuntu)
 
@@ -87,9 +85,10 @@ A few things about the config.json file:
 
 	+ The inventory_id must be unique and an integer. I chose those 2 random numbers to help me debug.
 	+ You can make the target cell whatever you want.
-	+ If you want to chekc more than two inventories just copy everything from inventory to message (including the curly brackets), and change the inventory_id.
+	+ If you want to check more than two inventories just copy and paste a block (including the curly brackets), and change the inventory_id.
 	
 Your google sheet ID you won't know until you create you Sheet. Once you've created it come back and fill this part in. The googlesheetId is the part of the Sheets link that is a long string of letters and numbers.
+```https://docs.google.com/spreadsheets/d/**18Rtd53P1SXAuhD3XNnQozALflWJxMitJQnSCtyxXP5o**/edit#gid=0```
 
 The sheetId in this example config is a Sheet that I own. If you want to use it to try out this code just let me know and I'll share the service account email and the key with you.
 
