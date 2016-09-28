@@ -124,7 +124,8 @@ I'm going to go ahead and assume you know how to create a Google Sheet so this s
 
 Thet sheetId is found in the address of the Google Sheet.
 
-Example: https://<span></span>docs.google.com/spreadsheets/d/**18Rtd53P1SXAuhD3XNnQozALflWJxMitJQnSCtyxXP5o**/edit#gid=0
+Example: 
+https://<span>docs.google</span>.com/spreadsheets/d/**18Rtd53P1SXAuhD3XNnQozALflWJxMitJQnSCtyxXP5o**/edit#gid=0
 
 The most important part of this step is to share the Sheet with your Service Account email address. That address is found [here.](https://console.cloud.google.com/iam-admin/serviceaccounts/)
 
