@@ -45,14 +45,11 @@ Note that when you clone the repository it creates a new directory with the same
 ragu222@ubuntu-14.04:~$ cd ./charges-may-apply
 ```
 
-Next you want to edit the config file to replace the default values with your real values. And DON'T TOUCH the *sent_flag* or *flag* values! You've been warned.
+Next you want to edit the config file to replace the default values with your real values.
 
 ```bash
 ragu222@ubuntu-14.04:~/charges-may-apply$ vi config.json
 ```
-
-You don't have to use vi. You can use whatever editor you want (you really should use vi, though).
-
 ```json
 {
 	"sendemail": {
@@ -73,7 +70,6 @@ You don't have to use vi. You can use whatever editor you want (you really shoul
 			"threshold":"50",
 			"subject":"This is the subject ",
 			"message":"You're low on elephants!",
-			"sent_flag": 0
 		},
 		{
 			"inventory_id":555,
@@ -83,18 +79,19 @@ You don't have to use vi. You can use whatever editor you want (you really shoul
 			"threshold":"50",
 			"subject":"This is the subject ",
 			"message":"You're low bears !",
-			"sent_flag": 0
 		}
 	 ]
 }
 ```
 A few things about the config.json file:
 
-	* The inventory_id must be unique and an integer. I chose those 2 random numbers to help me debug.
-	* 
+	+ The inventory_id must be unique and an integer. I chose those 2 random numbers to help me debug.
+	+ You can make the target cell whatever you want.
+	+ If you want to chekc more than two inventories just copy everything from inventory to message (including the curly brackets), and change the inventory_id.
+	
 Your google sheet ID you won't know until you create you Sheet. Once you've created it come back and fill this part in. The googlesheetId is the part of the Sheets link that is a long string of letters and numbers.
 
-Also note the section titled "inventories."  That is where you want the scrip to look for a value and also what you want that threshold value to be. We're looking for elephants here in our example, but you could look for anything.
+The sheetId in this example config is a Sheet that I own. If you want to use it to try out this code just let me know and I'll share the service account email and the key with you.
 
 ###Python script
 
@@ -151,11 +148,18 @@ Add this entry to the bottom of the file and save it:
 
 This crontab entry checks the Sheet every 5 minutes. If you want to change that interval this is where to do it.
 
+##Miscellaneous
+
+If you add or remove inventories to check you will have to delete the hidden ```.flags``` file before running the script again:
+
+```bash
+rm .flags
+```
+The script will automatically create the file again on it's subsequent run.
+
 ##Conclusion
 
 That's it! Have fun.
 
-###PS
-It's late. I'll clean up the code later.
 
 
